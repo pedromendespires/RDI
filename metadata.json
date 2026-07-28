@@ -1,0 +1,6 @@
+{
+  "name": "Carteira Ray Dalio - Aplicação Prática & Análise em Tempo Real",
+  "description": "Aplicação prática para alocação e gestão da carteira de investimento de 4 ativos segundo a visão macro de Ray Dalio, com gráficos em tempo real, simulação de estresse e inteligência artificial.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

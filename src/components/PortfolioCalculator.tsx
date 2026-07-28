@@ -80,7 +80,7 @@ export const PortfolioCalculator: React.FC<PortfolioCalculatorProps> = ({
       borderColor: 'border-emerald-500/30',
       textColor: 'text-emerald-400',
       description: 'Bens tangíveis essenciais para a vida: terras agrícolas (comida) e imobiliário residencial para arrendamento.',
-      examples: 'REITs Agrícolas (LAND), REITs Residenciais/Comerciais (O, VNQ)',
+      examples: 'REITs Agrícolas (LAND, FPI), REITs Residenciais/Comerciais (VNQ)',
     },
     {
       key: 'bitcoin' as keyof PortfolioAllocation,
@@ -92,7 +92,7 @@ export const PortfolioCalculator: React.FC<PortfolioCalculatorProps> = ({
       borderColor: 'border-orange-500/30',
       textColor: 'text-orange-400',
       description: 'Ativo complementar com escassez matemática para diversificação moderna.',
-      examples: 'BTC, Custódia Própria, ETFs de Cripto',
+      examples: 'BTC, ETFs de Cripto, MSTR, STRC, STRF',
     },
   ];
 

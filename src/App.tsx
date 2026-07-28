@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { PortfolioAllocation, Currency, MarketDataResponse } from './types';
 import { Header } from './components/Header';
-import { MarketTicker } from './components/MarketTicker';
 import { PortfolioCalculator } from './components/PortfolioCalculator';
 import { RealTimeCharts } from './components/RealTimeCharts';
 import { SeasonStressTester } from './components/SeasonStressTester';
@@ -77,9 +76,6 @@ export default function App() {
         isRefreshing={isRefreshing}
         totalCapital={totalCapital}
       />
-
-      {/* Real-time Market Ticker Bar */}
-      <MarketTicker marketData={marketData} currency={currency} />
 
       {/* Main Content Body */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">

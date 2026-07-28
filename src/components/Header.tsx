@@ -1,6 +1,6 @@
 import React from 'react';
 import { Currency } from '../types';
-import { Shield, BookOpen, RefreshCw, DollarSign, Coins } from 'lucide-react';
+import { BookOpen, RefreshCw, DollarSign, Coins } from 'lucide-react';
 
 interface HeaderProps {
   currency: Currency;
@@ -30,9 +30,6 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
         {/* Brand & Title */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center shadow-md shadow-amber-500/20 text-slate-950 font-bold">
-            <Shield className="w-6 h-6 text-slate-950" />
-          </div>
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-lg sm:text-xl font-bold tracking-tight text-slate-100 font-serif">
@@ -42,9 +39,6 @@ export const Header: React.FC<HeaderProps> = ({
                 Modelo All-Weather
               </span>
             </div>
-            <p className="text-xs text-slate-400 hidden sm:block">
-              Aplicação Prática, Análise em Tempo Real & Proteção Patrimonial
-            </p>
           </div>
         </div>
 
@@ -88,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="btn-refresh-data"
             onClick={onRefreshData}
-            title="Atualizar cotações em tempo real"
+            title="Atualizar cotações"
             className="p-2 bg-slate-800 hover:bg-slate-700/80 border border-slate-700 rounded-lg text-slate-300 hover:text-white transition flex items-center justify-center"
           >
             <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin text-amber-400' : ''}`} />

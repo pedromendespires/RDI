@@ -12,7 +12,7 @@ export const MarketTicker: React.FC<MarketTickerProps> = ({ marketData, currency
     return (
       <div className="bg-slate-900/90 border-b border-slate-800 py-2.5 px-4 text-xs text-slate-400 flex items-center justify-center gap-2">
         <Radio className="w-4 h-4 text-amber-400 animate-pulse" />
-        <span>A ligar aos dados de mercado em tempo real...</span>
+        <span>A carregar dados de mercado...</span>
       </div>
     );
   }
@@ -51,7 +51,7 @@ export const MarketTicker: React.FC<MarketTickerProps> = ({ marketData, currency
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
           </span>
-          <span className="text-[11px] font-sans font-semibold text-slate-300">Tempo Real:</span>
+          <span className="text-[11px] font-sans font-semibold text-slate-300">Cotações de Mercado:</span>
         </div>
 
         {/* Assets Price Tickers */}

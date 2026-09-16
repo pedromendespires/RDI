@@ -12,7 +12,7 @@ import { ShieldCheck, Activity, Layers, Bot, Compass, Calendar, ArrowUpRight } f
 
 export default function App() {
   const [currency, setCurrency] = useState<Currency>('BRL');
-  const [totalCapital, setTotalCapital] = useState<number>(100000);
+  const [totalCapital, setTotalCapital] = useState<number>(1000);
   const [isPrinciplesOpen, setIsPrinciplesOpen] = useState<boolean>(false);
   const [marketData, setMarketData] = useState<MarketDataResponse | null>(null);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);

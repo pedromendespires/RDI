@@ -169,7 +169,7 @@ export const PortfolioCalculator: React.FC<PortfolioCalculatorProps> = ({
           {/* Quick Capital Selectors */}
           <div className="flex flex-wrap items-center gap-2 text-xs">
             <span className="text-slate-400 font-medium">Atalhos:</span>
-            {[10000, 50000, 100000, 500000, 1000000].map((val) => (
+            {[1000, 10000, 50000, 100000, 500000, 1000000].map((val) => (
               <button
                 key={val}
                 onClick={() => setTotalCapital(val)}

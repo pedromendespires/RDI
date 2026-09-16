@@ -5,18 +5,17 @@ import { PortfolioCalculator } from './components/PortfolioCalculator';
 import { RealTimeCharts } from './components/RealTimeCharts';
 import { SeasonStressTester } from './components/SeasonStressTester';
 import { AssetManager } from './components/AssetManager';
-import { GeminiAiAnalyst } from './components/GeminiAiAnalyst';
 import { TransitionRoadmap } from './components/TransitionRoadmap';
 import { DalioPrinciplesModal } from './components/DalioPrinciplesModal';
-import { ShieldCheck, Activity, Layers, Bot, Compass, Calendar, ArrowUpRight } from 'lucide-react';
+import { ShieldCheck, Activity, Layers, Compass, Calendar } from 'lucide-react';
 
 export default function App() {
-  const [currency, setCurrency] = useState<Currency>('BRL');
+  const [currency, setCurrency] = useState<Currency>('EUR');
   const [totalCapital, setTotalCapital] = useState<number>(1000);
   const [isPrinciplesOpen, setIsPrinciplesOpen] = useState<boolean>(false);
   const [marketData, setMarketData] = useState<MarketDataResponse | null>(null);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
-  const [activeMainSection, setActiveMainSection] = useState<'calculator' | 'charts' | 'seasons' | 'roadmap' | 'assets' | 'ai'>('calculator');
+  const [activeMainSection, setActiveMainSection] = useState<'calculator' | 'charts' | 'seasons' | 'roadmap' | 'assets'>('calculator');
 
   // Allocation state (4 Survival Assets default recommendation)
   const [allocation, setAllocation] = useState<PortfolioAllocation>({
@@ -51,11 +50,8 @@ export default function App() {
   }, [fetchMarketData]);
 
   // Callback when user updates holdings in AssetManager
-  const handleUpdateAggregatedAllocation = useCallback((calcAlloc: PortfolioAllocation, totalVal: number) => {
+  const handleUpdateAggregatedAllocation = useCallback((calcAlloc: PortfolioAllocation) => {
     setAllocation(calcAlloc);
-    if (totalVal > 0) {
-      setTotalCapital(totalVal);
-    }
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -140,18 +136,6 @@ export default function App() {
             <Layers className="w-4 h-4" />
             <span>Ativos Registados</span>
           </button>
-
-          <button
-            onClick={() => { setActiveMainSection('ai'); scrollToSection('gemini-ai-analyst-section'); }}
-            className={`px-3.5 py-2 rounded-xl font-bold transition flex items-center gap-2 whitespace-nowrap ${
-              activeMainSection === 'ai'
-                ? 'bg-amber-500 text-slate-950 shadow-md'
-                : 'bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            <Bot className="w-4 h-4" />
-            <span>Analista Dalio IA</span>
-          </button>
         </div>
 
         {/* Section 1: Portfolio Calculator & Rebalancing */}
@@ -161,10 +145,6 @@ export default function App() {
           totalCapital={totalCapital}
           setTotalCapital={setTotalCapital}
           currency={currency}
-          onRunAiAnalysis={() => {
-            setActiveMainSection('ai');
-            scrollToSection('gemini-ai-analyst-section');
-          }}
         />
 
         {/* Section 2: Real-time Charts & Performance Backtest */}
@@ -185,13 +165,6 @@ export default function App() {
           currency={currency}
           onUpdateAggregatedAllocation={handleUpdateAggregatedAllocation}
         />
-
-        {/* Section 5: Gemini AI Portfolio Analyst */}
-        <GeminiAiAnalyst
-          allocation={allocation}
-          totalCapital={totalCapital}
-          currency={currency}
-        />
       </main>
 
       {/* Footer */}
@@ -204,7 +177,7 @@ export default function App() {
             Esta ferramenta tem caráter estritamente educativo e analítico baseada na filosofia de investimentos All-Weather e Ciclos de Dívida de Ray Dalio (Bridgewater Associates). Não constitui recomendação de compra ou venda de ativos financeiros.
           </p>
           <div className="text-slate-600 text-[10px]">
-            Powered by Google AI Studio Build & Gemini 3.6 Flash
+            Powered by Google AI Studio Build
           </div>
         </div>
       </footer>

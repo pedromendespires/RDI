@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { UserAssetItem, Currency, PortfolioAllocation } from '../types';
 import { Layers, Plus, Trash2, Edit2, Check, DollarSign, Wallet, ArrowUpRight, Save } from 'lucide-react';
 
@@ -74,9 +74,17 @@ export const AssetManager: React.FC<AssetManagerProps> = ({ currency, onUpdateAg
     notes: '',
   });
 
+  const isInitialMount = useRef(true);
+
   // Save assets to localStorage and recalculate portfolio pillar allocation
   useEffect(() => {
     localStorage.setItem('ray_dalio_user_assets', JSON.stringify(assets));
+
+    // Não sobrescrever a alocação nem o capital inicial da calculadora no arranque da aplicação
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
 
     // Calculate aggregated value per pillar
     let goldTotal = 0;

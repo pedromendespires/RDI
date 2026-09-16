@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PortfolioAllocation, Currency, PresetStrategy } from '../types';
 import { PRESET_STRATEGIES } from '../data/dalioModelData';
-import { Calculator, ArrowRightLeft, Sliders, CheckCircle2, AlertCircle, PieChart, Sparkles } from 'lucide-react';
+import { Calculator, ArrowRightLeft, Sliders, CheckCircle2, AlertCircle, PieChart } from 'lucide-react';
 
 interface PortfolioCalculatorProps {
   allocation: PortfolioAllocation;
@@ -9,7 +9,6 @@ interface PortfolioCalculatorProps {
   totalCapital: number;
   setTotalCapital: (val: number) => void;
   currency: Currency;
-  onRunAiAnalysis?: () => void;
 }
 
 export const PortfolioCalculator: React.FC<PortfolioCalculatorProps> = ({
@@ -18,7 +17,6 @@ export const PortfolioCalculator: React.FC<PortfolioCalculatorProps> = ({
   totalCapital,
   setTotalCapital,
   currency,
-  onRunAiAnalysis,
 }) => {
   const [selectedPreset, setSelectedPreset] = useState<string>('all_weather_classic');
   const [lockedPillars, setLockedPillars] = useState<{ [key: string]: boolean }>({});
@@ -130,18 +128,6 @@ export const PortfolioCalculator: React.FC<PortfolioCalculatorProps> = ({
             Defina o montante total para calcular exatamente o valor em dinheiro a aportar em cada pilar da carteira de Ray Dalio.
           </p>
         </div>
-
-        {/* AI Callout button */}
-        {onRunAiAnalysis && (
-          <button
-            id="btn-trigger-ai-analysis"
-            onClick={onRunAiAnalysis}
-            className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center gap-2 cursor-pointer"
-          >
-            <Sparkles className="w-4 h-4 fill-slate-950" />
-            <span>Análise IA Ray Dalio</span>
-          </button>
-        )}
       </div>
 
       {/* Capital Input Bar & Preset Buttons */}
@@ -158,8 +144,8 @@ export const PortfolioCalculator: React.FC<PortfolioCalculatorProps> = ({
             <input
               id="input-total-capital"
               type="number"
-              min="1000"
-              step="1000"
+              min="0"
+              step="100"
               value={totalCapital}
               onChange={(e) => setTotalCapital(Math.max(0, Number(e.target.value)))}
               className="w-full pl-11 pr-4 py-2.5 bg-slate-900 border border-slate-700/80 rounded-xl text-white font-bold text-lg sm:text-xl focus:outline-none focus:border-amber-500 transition"
@@ -168,7 +154,6 @@ export const PortfolioCalculator: React.FC<PortfolioCalculatorProps> = ({
 
           {/* Quick Capital Selectors */}
           <div className="flex flex-wrap items-center gap-2 text-xs">
-            <span className="text-slate-400 font-medium">Atalhos:</span>
             {[1000, 10000, 50000, 100000, 500000, 1000000].map((val) => (
               <button
                 key={val}
